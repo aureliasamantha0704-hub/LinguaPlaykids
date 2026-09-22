@@ -1,5 +1,5 @@
 import React from 'react';
-import { Volume2, VolumeX, Shield, ShoppingBag, Award, Sparkles, Flame, Coins, Star, ArrowLeft } from 'lucide-react';
+import { Volume2, VolumeX, Shield, ShoppingBag, Award, Sparkles, Flame, Coins, Star, ArrowLeft, LogOut } from 'lucide-react';
 import { ChildProfile, ActiveLanguage } from '../../types';
 import { sound } from '../../utils/sound';
 import { MASCOTS } from '../../data/avatars';
@@ -15,6 +15,7 @@ interface HeaderProps {
   onOpenParentGate: () => void;
   onGoHome: () => void;
   onBack?: () => void;
+  onOpenLogoutModal?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -28,6 +29,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenParentGate,
   onGoHome,
   onBack,
+  onOpenLogoutModal,
 }) => {
   const currentMascot = MASCOTS.find((m) => m.id === profile.avatar.mascotId) || MASCOTS[0];
 
@@ -72,39 +74,39 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
         </div>
 
-        {/* Center: Language Switcher (EN / ZH) */}
-        {profile.selectedLanguage === 'both' && (
-          <div className="flex bg-amber-100 p-1 rounded-2xl border-2 border-amber-300 shadow-inner">
-            <button
-              onClick={() => {
-                sound.playClick();
-                onSelectLanguage('en');
-              }}
-              className={`flex items-center gap-1 sm:gap-1.5 px-2.5 py-1 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer ${
-                profile.activeLanguage === 'en'
-                  ? 'bg-amber-500 text-white shadow-md scale-105'
-                  : 'text-amber-800 hover:bg-amber-200/60'
-              }`}
-            >
-              <span>🇬🇧</span>
-              <span className="hidden sm:inline">English</span>
-            </button>
-            <button
-              onClick={() => {
-                sound.playClick();
-                onSelectLanguage('zh');
-              }}
-              className={`flex items-center gap-1 sm:gap-1.5 px-2.5 py-1 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer ${
-                profile.activeLanguage === 'zh'
-                  ? 'bg-rose-500 text-white shadow-md scale-105'
-                  : 'text-rose-800 hover:bg-rose-200/60'
-              }`}
-            >
-              <span>🇨🇳</span>
-              <span className="hidden sm:inline">中文</span>
-            </button>
-          </div>
-        )}
+        {/* Center: Accessible Language Switcher (EN / ZH Switchable Anytime) */}
+        <div className="flex bg-amber-100 p-1 rounded-2xl border-2 border-amber-300 shadow-inner">
+          <button
+            onClick={() => {
+              sound.playClick();
+              onSelectLanguage('en');
+            }}
+            className={`flex items-center gap-1 sm:gap-1.5 px-2.5 py-1 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer ${
+              profile.activeLanguage === 'en'
+                ? 'bg-amber-500 text-white shadow-md scale-105'
+                : 'text-amber-800 hover:bg-amber-200/60'
+            }`}
+            title="Switch learning to English 🇬🇧"
+          >
+            <span>🇬🇧</span>
+            <span className="hidden sm:inline">English</span>
+          </button>
+          <button
+            onClick={() => {
+              sound.playClick();
+              onSelectLanguage('zh');
+            }}
+            className={`flex items-center gap-1 sm:gap-1.5 px-2.5 py-1 rounded-xl text-xs sm:text-sm font-black transition-all cursor-pointer ${
+              profile.activeLanguage === 'zh'
+                ? 'bg-rose-500 text-white shadow-md scale-105'
+                : 'text-rose-800 hover:bg-rose-200/60'
+            }`}
+            title="Switch learning to Mandarin Chinese 🇨🇳"
+          >
+            <span>🇨🇳</span>
+            <span className="hidden sm:inline">中文</span>
+          </button>
+        </div>
 
         {/* Right Stats & Action Buttons */}
         <div className="flex items-center gap-1.5 sm:gap-3">
@@ -185,6 +187,21 @@ export const Header: React.FC<HeaderProps> = ({
             <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-purple-600" />
             <span className="text-xs font-bold hidden lg:inline">Parents</span>
           </button>
+
+          {/* Logout Button */}
+          {onOpenLogoutModal && (
+            <button
+              onClick={() => {
+                sound.playClick();
+                onOpenLogoutModal();
+              }}
+              className="p-2 sm:p-2.5 bg-rose-100 hover:bg-rose-200 text-rose-700 rounded-2xl border-2 border-rose-300 cursor-pointer active:scale-95 transition-all flex items-center gap-1"
+              title="Log Out / Keluar"
+            >
+              <LogOut className="w-4 h-4 sm:w-5 sm:h-5 text-rose-600" />
+              <span className="text-xs font-bold hidden lg:inline">Logout</span>
+            </button>
+          )}
         </div>
       </div>
     </header>

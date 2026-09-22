@@ -42,6 +42,16 @@ export interface UnlockedItem {
   type: 'hat' | 'outfit' | 'background';
 }
 
+export interface LanguageProgressStats {
+  level: number;
+  xp: number;
+  stars: number;
+  coins: number;
+  streakDays: number;
+  dailyChallengeCompleted: boolean;
+  dailyChallengeDate: string;
+}
+
 export interface ChildProfile {
   id: string;
   nickname: string;
@@ -57,6 +67,10 @@ export interface ChildProfile {
   unlockedItems: string[]; // item IDs
   dailyChallengeCompleted: boolean;
   dailyChallengeDate: string;
+  languageProgress?: {
+    en: LanguageProgressStats;
+    zh: LanguageProgressStats;
+  };
 }
 
 export interface WordProgress {
