@@ -27,8 +27,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({
       {/* Hero Section */}
       <div className="max-w-5xl mx-auto text-center py-6 sm:py-12">
         {/* Floating Mascot Badges */}
-        <div className="inline-flex items-center gap-2 bg-amber-100 border-2 border-amber-300 px-4 py-2 rounded-full text-amber-800 text-xs sm:text-sm font-black shadow-sm mb-6 animate-bounce">
-          <span>🦁 Leo, 🐼 Mianmian & Friends Welcome You!</span>
+        <div className="inline-flex items-center gap-2 bg-amber-100 border-2 border-amber-300 px-4 py-2 rounded-full text-amber-900 text-xs sm:text-sm font-black shadow-sm mb-6 animate-bounce">
+          <span>🦁 Leo & 🐼 Mianmian • Aligned with CEFR (Pre-A1 to B1) & YCT 1–4 Standards 🌟</span>
         </div>
 
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-gray-900 tracking-tight leading-tight mb-4">
@@ -39,7 +39,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
         </h1>
 
         <p className="text-base sm:text-xl font-bold text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
-          The colorful English & Mandarin adventure web app designed for kids aged 6–12. Build vocabulary through mini-games, rewards, and audio repetition!
+          The colorful English & Mandarin adventure web app for kids aged 6–12. Structured into 7 international proficiency levels with mini-games, diplomas, and rewards!
         </p>
 
         {/* Hero Character Card Visual */}
@@ -125,21 +125,21 @@ export const LandingPage: React.FC<LandingPageProps> = ({
           </div>
 
           <div className="bg-white/70 backdrop-blur p-4 rounded-2xl border-2 border-emerald-200 text-center shadow-sm">
-            <div className="text-3xl mb-1">🔊</div>
-            <h4 className="font-black text-gray-800 text-sm">Native Audio</h4>
-            <p className="text-xs text-gray-500 font-medium">Clear English & Mandarin Pinyin</p>
+            <div className="text-3xl mb-1">📈</div>
+            <h4 className="font-black text-gray-800 text-sm">7 Level Standards</h4>
+            <p className="text-xs text-gray-500 font-medium">CEFR Pre-A1 to B1 & YCT 1–4 HSK Milestones</p>
           </div>
 
           <div className="bg-white/70 backdrop-blur p-4 rounded-2xl border-2 border-sky-200 text-center shadow-sm">
-            <div className="text-3xl mb-1">⭐</div>
-            <h4 className="font-black text-gray-800 text-sm">XP & Coins Shop</h4>
-            <p className="text-xs text-gray-500 font-medium">Unlock cool hats & avatar accessories</p>
+            <div className="text-3xl mb-1">📜</div>
+            <h4 className="font-black text-gray-800 text-sm">Official Diplomas</h4>
+            <p className="text-xs text-gray-500 font-medium">Accredited printable certificates of achievement</p>
           </div>
 
           <div className="bg-white/70 backdrop-blur p-4 rounded-2xl border-2 border-purple-200 text-center shadow-sm">
             <div className="text-3xl mb-1">🛡️</div>
-            <h4 className="font-black text-gray-800 text-sm">100% Child-Safe</h4>
-            <p className="text-xs text-gray-500 font-medium">No public ads, safe local progress</p>
+            <h4 className="font-black text-gray-800 text-sm">Parent Dashboard</h4>
+            <p className="text-xs text-gray-500 font-medium">Math gate, speech speed & progress tracking</p>
           </div>
         </div>
       </div>

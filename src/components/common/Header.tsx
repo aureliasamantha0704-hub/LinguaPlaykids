@@ -3,6 +3,7 @@ import { Volume2, VolumeX, Shield, ShoppingBag, Award, Sparkles, Flame, Coins, S
 import { ChildProfile, ActiveLanguage } from '../../types';
 import { sound } from '../../utils/sound';
 import { MASCOTS } from '../../data/avatars';
+import { getStandardBadgeInfo } from '../../data/levels';
 
 interface HeaderProps {
   profile: ChildProfile;
@@ -32,6 +33,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenLogoutModal,
 }) => {
   const currentMascot = MASCOTS.find((m) => m.id === profile.avatar.mascotId) || MASCOTS[0];
+  const standardBadge = getStandardBadgeInfo(profile.activeLanguage, profile.level);
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b-4 border-amber-200 px-3 sm:px-6 py-2.5 shadow-md">
@@ -142,8 +144,13 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <span className="text-xl sm:text-2xl leading-none">{currentMascot.emoji}</span>
             <div className="hidden sm:block text-left">
-              <p className="text-xs font-black leading-tight max-w-[80px] truncate">{profile.nickname}</p>
-              <p className="text-[10px] font-extrabold text-teal-100 uppercase">Lvl {profile.level}</p>
+              <p className="text-xs font-black leading-tight max-w-[85px] truncate">{profile.nickname}</p>
+              <div className="flex items-center gap-1">
+                <span className="text-[10px] font-extrabold text-teal-100 uppercase">Lvl {profile.level}</span>
+                <span className="text-[9px] font-black bg-white/25 px-1.5 py-0.2 rounded-md text-white tracking-wide">
+                  {standardBadge.standardCode.split(' ')[0]}
+                </span>
+              </div>
             </div>
             <Award className="w-4 h-4 text-teal-100 hidden sm:block" />
           </button>
