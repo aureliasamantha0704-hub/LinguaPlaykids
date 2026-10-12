@@ -32,6 +32,7 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
   onBackToGame,
 }) => {
   const [activeTab, setActiveTab] = useState<'overview' | 'settings'>('overview');
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
 
   const sessions = loadGameSessions();
   const wordProgressMap = loadWordProgress();
@@ -247,17 +248,45 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
               <p className="text-xs text-slate-500 mb-3 font-medium">
                 Resets earned XP, stars, coins, and learned words back to beginner baseline.
               </p>
-              <button
-                onClick={() => {
-                  if (window.confirm('Are you sure you want to reset learning progress?')) {
-                    onResetProgress();
-                  }
-                }}
-                className="px-4 py-2.5 bg-rose-100 hover:bg-rose-200 text-rose-700 font-extrabold text-xs rounded-xl cursor-pointer flex items-center gap-2"
-              >
-                <RefreshCw className="w-4 h-4" />
-                <span>Reset Child Progress</span>
-              </button>
+              {!showResetConfirm ? (
+                <button
+                  onClick={() => {
+                    sound.playClick();
+                    setShowResetConfirm(true);
+                  }}
+                  className="px-4 py-2.5 bg-rose-100 hover:bg-rose-200 text-rose-700 font-extrabold text-xs rounded-xl cursor-pointer flex items-center gap-2 transition-all active:scale-95"
+                >
+                  <RefreshCw className="w-4 h-4" />
+                  <span>Reset Child Progress</span>
+                </button>
+              ) : (
+                <div className="p-4 bg-rose-50 border-2 border-rose-300 rounded-2xl space-y-3">
+                  <p className="text-xs font-extrabold text-rose-800">
+                    ⚠️ Are you sure you want to reset all learning progress? This cannot be undone.
+                  </p>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => {
+                        sound.playClick();
+                        setShowResetConfirm(false);
+                      }}
+                      className="px-3 py-1.5 bg-white border border-slate-300 text-slate-700 font-bold text-xs rounded-xl cursor-pointer hover:bg-slate-50"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={() => {
+                        sound.playClick();
+                        setShowResetConfirm(false);
+                        onResetProgress();
+                      }}
+                      className="px-3 py-1.5 bg-rose-600 text-white font-extrabold text-xs rounded-xl shadow-xs cursor-pointer hover:bg-rose-700"
+                    >
+                      Yes, Reset Progress
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -63,6 +63,32 @@ export const WordBuilderGame: React.FC<WordBuilderGameProps> = ({
       used: false,
     }));
 
+    // If word is short (e.g. 1-3 chars, common in Chinese characters & short words),
+    // add distractors from other vocabulary items so child has a fun 4-tile puzzle!
+    if (chars.length < 4) {
+      const topicVocab = getVocabularyByTopic(topicId).filter((v) => v.id !== targetItem.id);
+      const distractors: string[] = [];
+
+      for (const item of topicVocab) {
+        const poolWord = activeLanguage === 'zh' ? item.chinese : item.english.toUpperCase();
+        for (const ch of poolWord.split('')) {
+          if (!chars.includes(ch) && !distractors.includes(ch) && ch.trim()) {
+            distractors.push(ch);
+          }
+          if (tileList.length + distractors.length >= 4) break;
+        }
+        if (tileList.length + distractors.length >= 4) break;
+      }
+
+      distractors.forEach((dChar, idx) => {
+        tileList.push({
+          id: `distractor_${idx}_${dChar}`,
+          char: dChar,
+          used: false,
+        });
+      });
+    }
+
     // Shuffle tiles
     const shuffled = [...tileList].sort(() => 0.5 - Math.random());
     setTiles(shuffled);
@@ -72,7 +98,7 @@ export const WordBuilderGame: React.FC<WordBuilderGameProps> = ({
     // Speak word
     const textToSpeak = activeLanguage === 'zh' ? targetItem.chinese : targetItem.english;
     sound.speak(textToSpeak, activeLanguage, speechSpeed);
-  }, [currentIndex, targetWord, targetItem, activeLanguage, speechSpeed]);
+  }, [currentIndex, targetWord, targetItem, activeLanguage, speechSpeed, topicId]);
 
   const handleTileClick = (tile: TileItem) => {
     if (tile.used || feedback === 'correct') return;

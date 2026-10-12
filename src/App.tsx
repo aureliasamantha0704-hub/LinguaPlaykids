@@ -146,7 +146,13 @@ export default function App() {
     if (currentView === 'landing') {
       return (
         <LandingPage
+          profile={profile}
           onStartPlay={handleStartPlayFromLanding}
+          onStartNewAdventure={() => {
+            setSessionActive(true);
+            setIsAuthenticated(true);
+            setCurrentView('onboarding');
+          }}
           onOpenParentGate={() => setIsParentGateOpen(true)}
         />
       );
@@ -167,7 +173,13 @@ export default function App() {
     if (!isAuthenticated) {
       return (
         <LandingPage
+          profile={profile}
           onStartPlay={handleStartPlayFromLanding}
+          onStartNewAdventure={() => {
+            setSessionActive(true);
+            setIsAuthenticated(true);
+            setCurrentView('onboarding');
+          }}
           onOpenParentGate={() => setIsParentGateOpen(true)}
         />
       );
@@ -251,7 +263,7 @@ export default function App() {
           settings={parentSettings}
           onUpdateSettings={setParentSettings}
           onResetProgress={handleResetProgress}
-          onBackToGame={() => setCurrentView('world')}
+          onBackToGame={() => setCurrentView(isAuthenticated ? 'world' : 'landing')}
         />
       );
     }

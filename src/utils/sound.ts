@@ -4,6 +4,25 @@
 
 class SoundEngine {
   private ctx: AudioContext | null = null;
+  private currentUtterance: SpeechSynthesisUtterance | null = null;
+  private voices: SpeechSynthesisVoice[] = [];
+
+  constructor() {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      this.populateVoices();
+      if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = () => this.populateVoices();
+      }
+    }
+  }
+
+  private populateVoices() {
+    try {
+      this.voices = window.speechSynthesis.getVoices();
+    } catch {
+      this.voices = [];
+    }
+  }
 
   private getAudioContext(): AudioContext | null {
     if (typeof window === 'undefined') return null;
@@ -90,7 +109,7 @@ class SoundEngine {
       osc.connect(gain);
       gain.connect(ctx.destination);
 
-      osc.start();
+      osc.start(ctx.currentTime + 0.25);
       osc.stop(ctx.currentTime + 0.25);
     } catch {
       // Audio error fallback
@@ -133,32 +152,60 @@ class SoundEngine {
   speak(text: string, lang: 'en' | 'zh', speed: number = 0.85): Promise<void> {
     return new Promise((resolve) => {
       if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
+        this.playClick();
         resolve();
         return;
       }
 
-      window.speechSynthesis.cancel(); // cancel previous active speech
-
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = lang === 'zh' ? 'zh-CN' : 'en-US';
-      utterance.rate = speed;
-      utterance.pitch = 1.1; // Slightly friendly kid pitch
-
-      utterance.onend = () => resolve();
-      utterance.onerror = () => resolve();
-
-      // Find appropriate voice if available
-      const voices = window.speechSynthesis.getVoices();
-      if (voices && voices.length > 0) {
-        const matchingVoice = voices.find((v) =>
-          lang === 'zh' ? v.lang.includes('zh') || v.lang.includes('CN') : v.lang.includes('en')
-        );
-        if (matchingVoice) {
-          utterance.voice = matchingVoice;
+      try {
+        window.speechSynthesis.cancel();
+        if (window.speechSynthesis.paused) {
+          window.speechSynthesis.resume();
         }
-      }
 
-      window.speechSynthesis.speak(utterance);
+        const utterance = new SpeechSynthesisUtterance(text);
+        this.currentUtterance = utterance; // Prevent garbage collection in Chrome
+
+        utterance.lang = lang === 'zh' ? 'zh-CN' : 'en-US';
+        utterance.rate = Math.max(0.5, Math.min(1.5, speed));
+        utterance.pitch = 1.1; // Slightly friendly kid pitch
+
+        let resolved = false;
+        const complete = () => {
+          if (!resolved) {
+            resolved = true;
+            this.currentUtterance = null;
+            resolve();
+          }
+        };
+
+        utterance.onend = complete;
+        utterance.onerror = complete;
+
+        // Auto timeout fallback so speech never hangs game state
+        setTimeout(complete, 4000);
+
+        // Find appropriate voice
+        if (this.voices.length === 0) {
+          this.populateVoices();
+        }
+
+        if (this.voices.length > 0) {
+          const matchingVoice = this.voices.find((v) =>
+            lang === 'zh'
+              ? v.lang.toLowerCase().includes('zh') || v.lang.toLowerCase().includes('cn')
+              : v.lang.toLowerCase().includes('en-us') || v.lang.toLowerCase().includes('en')
+          );
+          if (matchingVoice) {
+            utterance.voice = matchingVoice;
+          }
+        }
+
+        window.speechSynthesis.speak(utterance);
+      } catch {
+        this.playClick();
+        resolve();
+      }
     });
   }
 }

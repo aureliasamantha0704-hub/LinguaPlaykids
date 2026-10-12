@@ -2,12 +2,26 @@ import React from 'react';
 import { Play, Sparkles, Shield, Heart, Volume2, Globe, Star, Award, CheckCircle } from 'lucide-react';
 import { sound } from '../../utils/sound';
 
+import { ChildProfile } from '../../types';
+import { DEFAULT_PROFILE } from '../../utils/storage';
+import { MASCOTS } from '../../data/avatars';
+
 interface LandingPageProps {
+  profile?: ChildProfile;
   onStartPlay: () => void;
+  onStartNewAdventure?: () => void;
   onOpenParentGate: () => void;
 }
 
-export const LandingPage: React.FC<LandingPageProps> = ({ onStartPlay, onOpenParentGate }) => {
+export const LandingPage: React.FC<LandingPageProps> = ({
+  profile,
+  onStartPlay,
+  onStartNewAdventure,
+  onOpenParentGate,
+}) => {
+  const hasCustomProfile = profile && profile.nickname !== DEFAULT_PROFILE.nickname;
+  const currentMascot = profile ? (MASCOTS.find((m) => m.id === profile.avatar.mascotId) || MASCOTS[0]) : MASCOTS[0];
+
   return (
     <div className="min-h-[calc(100vh-80px)] bg-gradient-to-b from-amber-50 via-sky-50 to-purple-50 py-8 px-4 sm:px-8 flex flex-col justify-between">
       {/* Hero Section */}
@@ -50,17 +64,45 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStartPlay, onOpenPar
         </div>
 
         {/* Main CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-12">
-          <button
-            onClick={() => {
-              sound.playFanfare();
-              onStartPlay();
-            }}
-            className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white font-black text-xl rounded-3xl shadow-xl border-4 border-amber-300 cursor-pointer active:scale-95 transition-all flex items-center justify-center gap-3 group"
-          >
-            <Play className="w-7 h-7 fill-white group-hover:scale-110 transition-transform" />
-            <span>Play Now! (Start Adventure)</span>
-          </button>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-lg mx-auto mb-12">
+          {hasCustomProfile ? (
+            <div className="w-full flex flex-col gap-3">
+              <button
+                onClick={() => {
+                  sound.playFanfare();
+                  onStartPlay();
+                }}
+                className="w-full px-8 py-4 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white font-black text-xl rounded-3xl shadow-xl border-4 border-amber-300 cursor-pointer active:scale-95 transition-all flex items-center justify-center gap-3 group"
+              >
+                <span className="text-2xl">{currentMascot.emoji}</span>
+                <span>Continue as {profile.nickname} (Lvl {profile.level})</span>
+                <Play className="w-6 h-6 fill-white group-hover:scale-110 transition-transform" />
+              </button>
+
+              {onStartNewAdventure && (
+                <button
+                  onClick={() => {
+                    sound.playClick();
+                    onStartNewAdventure();
+                  }}
+                  className="text-xs font-black text-amber-700 hover:text-amber-800 underline cursor-pointer"
+                >
+                  Create New Child Profile / Setup Again 🔄
+                </button>
+              )}
+            </div>
+          ) : (
+            <button
+              onClick={() => {
+                sound.playFanfare();
+                onStartPlay();
+              }}
+              className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 hover:from-amber-400 hover:to-rose-400 text-white font-black text-xl rounded-3xl shadow-xl border-4 border-amber-300 cursor-pointer active:scale-95 transition-all flex items-center justify-center gap-3 group"
+            >
+              <Play className="w-7 h-7 fill-white group-hover:scale-110 transition-transform" />
+              <span>Play Now! (Start Adventure)</span>
+            </button>
+          )}
 
           <button
             onClick={() => {

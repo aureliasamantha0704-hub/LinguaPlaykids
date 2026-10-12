@@ -134,7 +134,7 @@ export function loadChildProfile(): ChildProfile {
       const lastDate = new Date(profile.lastActiveDate);
       const currDate = new Date(today);
       const diffTime = Math.abs(currDate.getTime() - lastDate.getTime());
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
 
       if (diffDays === 1) {
         profile.streakDays += 1;
@@ -342,8 +342,12 @@ export function getTodayLearningMinutes(): number {
   const sessions = loadGameSessions();
   const today = getTodayDateString();
   const todaySessions = sessions.filter((s) => {
-    const sDate = new Date(s.timestamp).toISOString().split('T')[0];
-    return sDate === today;
+    try {
+      const sDate = new Date(s.timestamp).toISOString().split('T')[0];
+      return sDate === today;
+    } catch {
+      return false;
+    }
   });
   return todaySessions.length * 2;
 }
