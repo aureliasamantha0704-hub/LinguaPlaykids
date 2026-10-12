@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ArrowRight, ArrowLeft, Check, Sparkles, User, Globe, Smile } from 'lucide-react';
 import { ChildProfile, Language } from '../../types';
 import { MASCOTS } from '../../data/avatars';
+import { BrandLogo } from '../common/BrandLogo';
 import { sound } from '../../utils/sound';
 
 interface OnboardingFlowProps {
@@ -41,19 +42,26 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
 
   return (
     <div className="min-h-[calc(100vh-80px)] bg-amber-50/50 py-8 px-4 flex items-center justify-center">
-      <div className="bg-white rounded-3xl p-6 sm:p-10 max-w-xl w-full shadow-2xl border-4 border-amber-300 relative">
+      <div className="bg-white rounded-3xl p-6 sm:p-10 max-w-xl w-full shadow-2xl border-4 border-amber-300 relative text-center">
+        {/* Brand Logo Header */}
+        <div className="mb-4 flex justify-center">
+          <BrandLogo variant="full" height={52} />
+        </div>
+
         {/* Top Back to Landing Button */}
         {onBackToLanding && step === 1 && (
-          <button
-            onClick={() => {
-              sound.playClick();
-              onBackToLanding();
-            }}
-            className="mb-4 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-extrabold text-xs rounded-xl cursor-pointer flex items-center gap-1.5 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>Back to Home / Beranda</span>
-          </button>
+          <div className="flex justify-start mb-4">
+            <button
+              onClick={() => {
+                sound.playClick();
+                onBackToLanding();
+              }}
+              className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-extrabold text-xs rounded-xl cursor-pointer flex items-center gap-1.5 transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Back to Home / Beranda</span>
+            </button>
+          </div>
         )}
 
         {/* Step Indicator */}
