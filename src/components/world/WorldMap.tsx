@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Play, Star, Flame, Trophy, Sparkles, Volume2, ArrowRight, ArrowLeft, Lock, CheckCircle2 } from 'lucide-react';
 import { ChildProfile, Topic, TopicId, GameType, ActiveLanguage } from '../../types';
 import { TOPICS } from '../../data/vocabulary';
-import { getLevelTier, calculateLevelProgress, getStandardBadgeInfo } from '../../data/levels';
 import { sound } from '../../utils/sound';
 
 interface WorldMapProps {
@@ -21,9 +20,6 @@ export const WorldMap: React.FC<WorldMapProps> = ({
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
 
   const activeLang: ActiveLanguage = profile.activeLanguage;
-  const currentTier = getLevelTier(profile.level);
-  const progressData = calculateLevelProgress(profile.xp);
-  const standardBadge = getStandardBadgeInfo(profile.activeLanguage, profile.level);
 
   return (
     <div className="min-h-[calc(100vh-80px)] bg-gradient-to-b from-sky-100 via-amber-50 to-emerald-100 p-4 sm:p-8">
@@ -81,49 +77,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
           </button>
         </div>
 
-        {/* Level & Standard Progress Bar */}
-        <div className="bg-white/90 backdrop-blur rounded-3xl p-4 sm:p-5 border-3 border-amber-300 shadow-md flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3.5 text-center sm:text-left">
-            <div className={`w-12 h-12 rounded-2xl bg-gradient-to-tr ${currentTier.badgeGradient} flex items-center justify-center text-2xl shadow-sm text-white shrink-0`}>
-              {currentTier.badgeEmoji}
-            </div>
-            <div>
-              <div className="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
-                <span className="text-xs font-black text-gray-900">Level {currentTier.level}</span>
-                <span className="bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-black px-2 py-0.5 rounded-md">
-                  {standardBadge.standardCode}
-                </span>
-                <span className="text-[10px] font-bold text-gray-500 hidden sm:inline">
-                  ({standardBadge.frameworkName})
-                </span>
-              </div>
-              <p className="text-sm font-black text-amber-700">
-                {activeLang === 'zh' ? currentTier.titleZh : currentTier.titleEn}
-              </p>
-            </div>
-          </div>
-
-          {/* XP Progress Bar towards next standard milestone */}
-          <div className="w-full md:w-80 space-y-1.5">
-            <div className="flex items-center justify-between text-xs font-black text-gray-700">
-              <span>Next Standard Level</span>
-              <span className="text-amber-600 font-extrabold">{progressData.progressPercent}%</span>
-            </div>
-            <div className="w-full bg-amber-100 h-3 rounded-full overflow-hidden border border-amber-300 shadow-inner">
-              <div
-                className="bg-gradient-to-r from-amber-500 to-orange-500 h-full rounded-full transition-all duration-300"
-                style={{ width: `${progressData.progressPercent}%` }}
-              />
-            </div>
-            <div className="flex items-center justify-between text-[10px] font-bold text-gray-400">
-              <span>{profile.xp} XP</span>
-              <span>{progressData.nextTier ? `${progressData.nextTier.xpRequired} XP` : 'Max'}</span>
-            </div>
-          </div>
-        </div>
-
         {/* World Map Section Title */}
-        <div className="text-center space-y-1">
+        <div className="text-center space-y-2">
           <h2 className="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight">
             Select A Learning World 🗺️
           </h2>

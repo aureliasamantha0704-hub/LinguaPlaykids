@@ -7,7 +7,6 @@ import {
   WordProgress,
 } from '../types';
 import { ACHIEVEMENTS } from '../data/achievements';
-import { getLevelTierFromXp } from '../data/levels';
 
 const PROFILE_KEY = 'linguaplay_child_profile';
 const WORD_PROGRESS_KEY = 'linguaplay_word_progress';
@@ -282,8 +281,8 @@ export function recordGameSession(session: GameSession): void {
   profile.stars += session.starsEarned;
   profile.coins += session.coinsEarned;
 
-  // Standard-aligned level formula based on international language frameworks
-  profile.level = getLevelTierFromXp(profile.xp).level;
+  // Level formula: level = 1 + Math.floor(xp / 100)
+  profile.level = 1 + Math.floor(profile.xp / 100);
 
   saveChildProfile(profile);
 }

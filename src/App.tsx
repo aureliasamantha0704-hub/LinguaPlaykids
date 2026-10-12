@@ -299,15 +299,6 @@ export default function App() {
         {renderCurrentView()}
       </main>
 
-      {/* Persistent Logo in Top Right Corner */}
-      <div className="fixed top-4 right-4 z-50 pointer-events-none opacity-80 hover:opacity-100 transition-opacity">
-        <img 
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gemini_Generated_Image_fkk66nfkk66nfkk6.jpg-sD4k4U5S97e2B67d3mG4eD9mZl1v8l.jpeg" 
-          alt="LinguaPlay Kids Logo" 
-          className="w-24 h-auto object-contain"
-        />
-      </div>
-
       {/* Parent Gate Protection Modal */}
       <ParentGateModal
         isOpen={isParentGateOpen}

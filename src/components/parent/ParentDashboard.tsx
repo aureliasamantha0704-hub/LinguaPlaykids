@@ -14,7 +14,6 @@ import {
 import { ChildProfile, ParentSettings, GameSession } from '../../types';
 import { loadGameSessions, loadWordProgress, getTodayLearningMinutes, saveParentSettings } from '../../utils/storage';
 import { VOCABULARY_LIST } from '../../data/vocabulary';
-import { LEVEL_TIERS, getLevelTier, getStandardBadgeInfo, calculateLevelProgress } from '../../data/levels';
 import { sound } from '../../utils/sound';
 
 interface ParentDashboardProps {
@@ -139,88 +138,6 @@ export const ParentDashboard: React.FC<ParentDashboardProps> = ({
               <p className="text-[10px] text-slate-400 font-bold mt-1">Score ≥70%</p>
             </div>
           </div>
-
-          {/* International Standard Framework Alignment Card */}
-          {(() => {
-            const currentTier = getLevelTier(profile.level);
-            const standardBadge = getStandardBadgeInfo(profile.activeLanguage, profile.level);
-            const progress = calculateLevelProgress(profile.xp);
-            const isZh = profile.activeLanguage === 'zh';
-
-            return (
-              <div className="bg-white p-6 rounded-3xl border-2 border-purple-200 shadow-sm space-y-4">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
-                  <div className="flex items-center gap-3">
-                    <div className="p-3 bg-purple-100 text-purple-700 rounded-2xl text-2xl">
-                      {currentTier.badgeEmoji}
-                    </div>
-                    <div>
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-xs font-black uppercase text-purple-700">
-                          {standardBadge.frameworkName}
-                        </span>
-                        <span className="bg-purple-100 text-purple-900 text-xs font-black px-2 py-0.5 rounded-md border border-purple-300">
-                          {standardBadge.standardCode}
-                        </span>
-                        <span className="text-xs font-extrabold text-slate-500">
-                          • Level {currentTier.level} ({isZh ? currentTier.titleZh : currentTier.titleEn})
-                        </span>
-                      </div>
-                      <h4 className="text-lg font-black text-slate-900 mt-0.5">
-                        Language Proficiency Framework
-                      </h4>
-                    </div>
-                  </div>
-
-                  <div className="text-left sm:text-right">
-                    <span className="text-xs font-black text-slate-600 block">
-                      Target Words: {masteredWords.length} / {currentTier.targetWordsCount}
-                    </span>
-                    <span className="text-[10px] font-bold text-purple-600">
-                      {progress.nextTier ? `${progress.xpNeededForNext} XP to next standard tier` : 'Top Tier Achieved'}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Framework Explanation & Comparative Table */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200">
-                    <p className="font-black text-slate-800 mb-1">🇬🇧 English CEFR Alignment:</p>
-                    <p className="text-slate-600 leading-relaxed mb-2 font-medium">
-                      Mapped to Cambridge Young Learners (Pre-A1 Starters, A1 Movers, A2 Flyers, B1 Preliminary). Evaluates phonics, listening, and basic sentence construction.
-                    </p>
-                    <span className="inline-block bg-sky-100 text-sky-800 font-extrabold px-2 py-0.5 rounded text-[10px]">
-                      Current Equivalence: {currentTier.cefrEquivalent}
-                    </span>
-                  </div>
-
-                  <div className="bg-slate-50 p-4 rounded-2xl border border-slate-200">
-                    <p className="font-black text-slate-800 mb-1">🇨🇳 Mandarin YCT / HSK Alignment:</p>
-                    <p className="text-slate-600 leading-relaxed mb-2 font-medium">
-                      Mapped to Youth Chinese Test (YCT 1–4) & HSK (1–3) standard for primary learners. Focuses on pinyin tone recognition, characters, and high-frequency topics.
-                    </p>
-                    <span className="inline-block bg-rose-100 text-rose-800 font-extrabold px-2 py-0.5 rounded text-[10px]">
-                      Current Equivalence: {currentTier.yctEquivalent}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Level Tier Roadmap Bar */}
-                <div className="pt-2">
-                  <div className="flex items-center justify-between text-xs font-black text-slate-700 mb-1.5">
-                    <span>Progress to Level {currentTier.level + 1}</span>
-                    <span className="text-purple-700 font-extrabold">{progress.progressPercent}%</span>
-                  </div>
-                  <div className="w-full bg-slate-100 h-3 rounded-full overflow-hidden border border-slate-200 shadow-inner">
-                    <div
-                      className="bg-gradient-to-r from-purple-500 to-indigo-600 h-full rounded-full transition-all duration-300"
-                      style={{ width: `${progress.progressPercent}%` }}
-                    />
-                  </div>
-                </div>
-              </div>
-            );
-          })()}
 
           {/* Recommended Review Area */}
           {reviewWords.length > 0 && (

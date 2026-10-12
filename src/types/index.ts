@@ -122,24 +122,3 @@ export interface ParentSettings {
   speechSpeed: number; // 0.7 to 1.0
   childPin: string;
 }
-
-export interface LevelTier {
-  level: number;
-  titleEn: string;
-  titleZh: string;
-  titleIndo: string;
-  cefrEquivalent: string;
-  yctEquivalent: string;
-  hskEquivalent: string;
-  xpRequired: number;
-  nextLevelXp: number;
-  targetWordsCount: number;
-  badgeEmoji: string;
-  badgeGradient: string;
-  colorHex: string;
-  descriptionEn: string;
-  descriptionZh: string;
-  descriptionIndo: string;
-  skillsEn: string[];
-  skillsZh: string[];
-}
