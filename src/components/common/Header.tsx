@@ -4,6 +4,7 @@ import { ChildProfile, ActiveLanguage } from '../../types';
 import { sound } from '../../utils/sound';
 import { MASCOTS } from '../../data/avatars';
 import { getStandardBadgeInfo } from '../../data/levels';
+import { BrandLogo } from './BrandLogo';
 
 interface HeaderProps {
   profile: ChildProfile;
@@ -61,17 +62,15 @@ export const Header: React.FC<HeaderProps> = ({
               onGoHome();
             }}
             className="flex items-center gap-2 group text-left cursor-pointer transition-transform active:scale-95"
+            title="LinguaPlay Kids - Home"
           >
-            <div className="w-9 h-9 sm:w-11 sm:h-11 bg-gradient-to-tr from-amber-400 to-orange-500 rounded-2xl flex items-center justify-center text-xl sm:text-2xl shadow-md group-hover:rotate-6 transition-transform">
-              🌟
+            {/* Mascot Icon for very small screens */}
+            <div className="block sm:hidden">
+              <BrandLogo variant="icon" height={36} className="group-hover:rotate-6 transition-transform" />
             </div>
-            <div className="hidden min-[400px]:block">
-              <h1 className="text-lg sm:text-2xl font-black bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 bg-clip-text text-transparent leading-tight">
-                LinguaPlay
-              </h1>
-              <p className="text-[9px] sm:text-[10px] font-extrabold text-amber-600 tracking-wider uppercase">
-                Kids Learning
-              </p>
+            {/* Full Wordmark Logo for standard screens */}
+            <div className="hidden sm:block">
+              <BrandLogo variant="full" height={44} className="group-hover:scale-102 transition-transform" />
             </div>
           </button>
         </div>

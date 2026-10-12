@@ -1,50 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <defs>
-    <!-- Background Gradient matching app logo: from-amber-400 to-orange-500 -->
-    <linearGradient id="bgGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#f59e0b" />
-      <stop offset="50%" stop-color="#fb923c" />
-      <stop offset="100%" stop-color="#f97316" />
-    </linearGradient>
-
-    <!-- Star Glow / Highlight Gradient -->
-    <linearGradient id="starGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fffbeb" />
-      <stop offset="40%" stop-color="#fef08a" />
-      <stop offset="100%" stop-color="#f59e0b" />
-    </linearGradient>
-
-    <!-- Drop Shadow for Star -->
-    <filter id="starShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="#7c2d12" flood-opacity="0.3" />
-    </filter>
-  </defs>
-
-  <!-- Squircle Base matching rounded-2xl -->
-  <rect x="2" y="2" width="60" height="60" rx="16" ry="16" fill="url(#bgGrad)" stroke="#fef3c7" stroke-width="1.5" />
-
-  <!-- Inner Soft Bevel Highlight -->
-  <rect x="4" y="4" width="56" height="56" rx="14" ry="14" fill="none" stroke="#ffffff" stroke-width="1" stroke-opacity="0.4" />
-
-  <!-- Main 5-Pointed Star 🌟 with slight 3D angle matching app header logo -->
-  <g transform="translate(32,32) rotate(4) translate(-32,-32)" filter="url(#starShadow)">
-    <polygon
-      points="32,10 38.8,24.2 54.5,26.4 43,37.3 45.8,53 32,45.5 18.2,53 21,37.3 9.5,26.4 25.2,24.2"
-      fill="url(#starGrad)"
-      stroke="#d97706"
-      stroke-width="1.2"
-      stroke-linejoin="round"
-    />
-    <!-- Center Highlight Facet -->
-    <polygon
-      points="32,10 32,45.5 45.8,53 43,37.3 54.5,26.4 38.8,24.2"
-      fill="#ffffff"
-      fill-opacity="0.25"
-    />
-  </g>
-
-  <!-- Sparkle Accents -->
-  <circle cx="16" cy="16" r="2" fill="#ffffff" opacity="0.9" />
-  <circle cx="50" cy="46" r="1.5" fill="#ffffff" opacity="0.8" />
-  <polygon points="48,16 49.5,13 51,16 54,17.5 51,19 49.5,22 48,19 45,17.5" fill="#ffffff" opacity="0.85" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Rounded Background -->
+  <rect x="5" y="5" width="90" height="90" rx="20" ry="20" fill="#FFFBF5" />
+  <!-- Star Character -->
+  <path d="M50 20 C55 30, 60 40, 70 45 C80 50, 90 50, 90 60 C90 70, 80 70, 75 80 C70 90, 60 85, 50 85 C40 85, 30 90, 25 80 C20 70, 10 70, 10 60 C10 50, 20 50, 30 45 C40 40, 45 30, 50 20 Z" fill="#FFCF6C" />
+  <!-- Book -->
+  <path d="M30 65 C40 60, 60 60, 70 65 L70 85 C60 80, 40 80, 30 85 Z" fill="#4B3A7A" />
 </svg>
