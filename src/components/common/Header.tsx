@@ -4,6 +4,7 @@ import { ChildProfile, ActiveLanguage } from '../../types';
 import { sound } from '../../utils/sound';
 import { MASCOTS } from '../../data/avatars';
 import { getStandardBadgeInfo } from '../../data/levels';
+import { AppLogo } from './AppLogo';
 
 interface HeaderProps {
   profile: ChildProfile;
@@ -54,33 +55,16 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           )}
 
-          {/* Logo & Home Button */}
+          {/* Logo & Home Button (Direct logo at left, no square background) */}
           <button
             onClick={() => {
               sound.playClick();
               onGoHome();
             }}
-            className="flex items-center gap-2 group text-left cursor-pointer transition-transform active:scale-95"
+            className="flex items-center group text-left cursor-pointer transition-transform active:scale-95"
+            title="LinguaPlay Home"
           >
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl overflow-hidden shadow-md group-hover:rotate-6 transition-transform border-2 border-amber-300 bg-gradient-to-tr from-amber-400 to-orange-500 shrink-0 flex items-center justify-center">
-              <img
-                src="/logo.jpg"
-                alt="LinguaPlay Logo"
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-                onError={(e) => {
-                  (e.target as HTMLElement).style.display = 'none';
-                }}
-              />
-            </div>
-            <div className="hidden min-[400px]:block">
-              <h1 className="text-lg sm:text-2xl font-black bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 bg-clip-text text-transparent leading-tight">
-                LinguaPlay
-              </h1>
-              <p className="text-[9px] sm:text-[10px] font-extrabold text-amber-600 tracking-wider uppercase">
-                Kids Learning
-              </p>
-            </div>
+            <AppLogo size="sm" />
           </button>
         </div>
 

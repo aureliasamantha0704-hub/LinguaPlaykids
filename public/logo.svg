@@ -1,15 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 230" width="100%" height="100%">
   <defs>
     <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#735da5" flood-opacity="0.15" />
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#2d2a45" flood-opacity="0.12" />
     </filter>
     <linearGradient id="starGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FFE76A" />
-      <stop offset="100%" stop-color="#FFD438" />
-    </linearGradient>
-    <linearGradient id="bookCoverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#A48BE8" />
-      <stop offset="100%" stop-color="#886BDB" />
+      <stop offset="0%" stop-color="#FFC875" />
+      <stop offset="100%" stop-color="#FFAE42" />
     </linearGradient>
     <linearGradient id="pageGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#FFFFFF" />
@@ -19,13 +15,11 @@
 
   <!-- ================= MASCOT: STAR READING BOOK ================= -->
   <g transform="translate(15, 20)">
-    <!-- Yellow Sparkle Rays Around Star -->
-    <!-- Left top ray -->
-    <path d="M 38 68 L 22 75" stroke="#FFCE34" stroke-width="5" stroke-linecap="round" />
-    <path d="M 44 45 L 30 38" stroke="#FFCE34" stroke-width="5" stroke-linecap="round" />
-    <!-- Top rays -->
-    <path d="M 100 24 L 98 8" stroke="#FFCE34" stroke-width="5" stroke-linecap="round" />
-    <path d="M 122 35 L 132 20" stroke="#FFCE34" stroke-width="5" stroke-linecap="round" />
+    <!-- Orange Sparkle Rays Around Star -->
+    <path d="M 38 68 L 22 75" stroke="#FF7547" stroke-width="5" stroke-linecap="round" />
+    <path d="M 44 45 L 30 38" stroke="#FF7547" stroke-width="5" stroke-linecap="round" />
+    <path d="M 100 24 L 98 8" stroke="#FF7547" stroke-width="5" stroke-linecap="round" />
+    <path d="M 122 35 L 132 20" stroke="#FF7547" stroke-width="5" stroke-linecap="round" />
 
     <!-- Cute Chubby 5-Pointed Star -->
     <path d="
@@ -44,17 +38,17 @@
       filter="url(#softShadow)"
     />
 
-    <!-- Star Eyes (Cute Glossy Black Ovals) -->
-    <ellipse cx="86" cy="98" rx="4.8" ry="6.2" fill="#201C2B" />
+    <!-- Star Eyes -->
+    <ellipse cx="86" cy="98" rx="4.8" ry="6.2" fill="#222033" />
     <circle cx="84.5" cy="95.5" r="2.2" fill="#FFFFFF" />
     <circle cx="87.5" cy="100.5" r="0.9" fill="#FFFFFF" />
 
-    <ellipse cx="114" cy="98" rx="4.8" ry="6.2" fill="#201C2B" />
+    <ellipse cx="114" cy="98" rx="4.8" ry="6.2" fill="#222033" />
     <circle cx="112.5" cy="95.5" r="2.2" fill="#FFFFFF" />
     <circle cx="115.5" cy="100.5" r="0.9" fill="#FFFFFF" />
 
     <!-- Smiling Mouth with Tongue -->
-    <path d="M 94 105 C 96 114, 104 114, 106 105 Z" fill="#201C2B" />
+    <path d="M 94 105 C 96 114, 104 114, 106 105 Z" fill="#222033" />
     <path d="M 96 109 C 98 114, 102 114, 104 109 Z" fill="#FF708C" />
 
     <!-- Blushing Pink Cheeks -->
@@ -64,38 +58,28 @@
     <!-- Open Book In Front Of Star -->
     <g transform="translate(10, 0)">
       <!-- Left Outer Cover -->
-      <path d="M 28 122 C 40 102, 70 108, 88 120 L 88 168 C 70 156, 40 152, 28 172 Z" fill="#886CDA" />
+      <path d="M 28 122 C 40 102, 70 108, 88 120 L 88 168 C 70 156, 40 152, 28 172 Z" fill="#3D3A6B" />
       <!-- Left Pages -->
       <path d="M 33 120 C 44 104, 72 109, 88 120 L 88 164 C 72 153, 44 149, 33 166 Z" fill="url(#pageGrad)" />
-      <!-- Left Inner Fold Details -->
-      <path d="M 40 125 C 50 115, 72 117, 85 124" stroke="#D1C4F6" stroke-width="1.8" fill="none" />
-      <path d="M 42 133 C 52 123, 72 125, 85 131" stroke="#D1C4F6" stroke-width="1.8" fill="none" />
-
       <!-- Right Outer Cover -->
-      <path d="M 148 122 C 136 102, 106 108, 88 120 L 88 168 C 106 156, 136 152, 148 172 Z" fill="#886CDA" />
+      <path d="M 148 122 C 136 102, 106 108, 88 120 L 88 168 C 106 156, 136 152, 148 172 Z" fill="#3D3A6B" />
       <!-- Right Pages -->
       <path d="M 143 120 C 132 104, 104 109, 88 120 L 88 164 C 104 153, 132 149, 143 166 Z" fill="url(#pageGrad)" />
-      <!-- Right Inner Fold Details -->
-      <path d="M 136 125 C 126 115, 104 117, 91 124" stroke="#D1C4F6" stroke-width="1.8" fill="none" />
-      <path d="M 134 133 C 124 123, 104 125, 91 131" stroke="#D1C4F6" stroke-width="1.8" fill="none" />
-
       <!-- Center Spine Crease -->
-      <path d="M 87 119 L 89 120 L 89 166 L 87 165 Z" fill="#7154CA" />
+      <path d="M 87 119 L 89 120 L 89 166 L 87 165 Z" fill="#28254B" />
     </g>
   </g>
 
   <!-- ================= TYPOGRAPHY: LINGUAPLAY ================= -->
   <g transform="translate(195, 30)">
-    <!-- "Lingua" in Bubbly Purple #7961D1 -->
-    <g fill="#7961D1">
+    <!-- "Lingua" in Dark Navy #222033 -->
+    <g fill="#222033">
       <!-- Letter L -->
       <path d="M 10 42 C 10 32, 18 26, 26 26 C 34 26, 39 31, 39 41 L 39 88 L 52 88 C 60 88, 66 94, 66 102 C 66 110, 60 116, 51 116 L 24 116 C 14 116, 10 108, 10 99 Z" />
 
-      <!-- Letter i (with Heart Dot!) -->
-      <!-- Stem -->
+      <!-- Letter i (with Orange Heart Dot!) -->
       <rect x="74" y="52" width="18" height="64" rx="9" />
-      <!-- Heart Dot ♥ -->
-      <g transform="translate(83, 30) rotate(-12) scale(0.95)">
+      <g transform="translate(83, 30) rotate(-12) scale(0.95)" fill="#FF7547">
         <path d="M 0 6 A 6 6 0 0 1 11 -3 A 6 6 0 0 1 12 7 L 0 18 L -12 7 A 6 6 0 0 1 -11 -3 A 6 6 0 0 1 0 6 Z" />
       </g>
 
@@ -112,8 +96,8 @@
       <path d="M 353 46 C 369 46, 381 57, 381 74 L 381 107 C 381 113, 376 118, 369 118 C 364 118, 360 114, 359 109 C 352 115, 343 118, 334 118 C 322 118, 312 109, 312 97 C 312 84, 323 76, 340 75 L 358 74 L 358 72 C 358 66, 353 62, 346 62 C 339 62, 335 66, 334 71 C 333 76, 328 80, 322 80 C 316 80, 311 75, 312 69 C 316 56, 332 46, 353 46 Z M 346 99 C 352 99, 357 95, 359 90 L 359 86 L 344 87 C 336 88, 332 92, 332 97 C 332 101, 337 104, 346 99 Z" />
     </g>
 
-    <!-- "Play" in Bubbly Sunshine Yellow #FFBA2A -->
-    <g fill="#FFBA2A">
+    <!-- "Play" in Vibrant Orange #FF7547 -->
+    <g fill="#FF7547">
       <!-- Letter P -->
       <path d="M 398 32 C 398 25, 403 20, 411 20 C 427 20, 444 31, 444 50 C 444 68, 428 78, 415 78 L 415 119 C 415 126, 409 131, 403 131 C 396 131, 391 126, 391 119 L 391 38 Z M 415 37 L 415 62 C 421 62, 426 57, 426 50 C 426 42, 421 37, 415 37 Z" />
 
@@ -127,39 +111,39 @@
       <path d="M 540 56 C 540 50, 545 46, 552 46 C 558 46, 563 50, 565 55 L 576 86 L 587 55 C 589 50, 594 46, 600 46 C 607 46, 612 51, 610 58 L 588 117 C 583 131, 571 139, 558 139 C 551 139, 545 135, 545 129 C 545 124, 549 120, 554 120 C 560 120, 567 116, 570 107 L 572 101 L 544 59 C 541 57, 540 55, 540 56 Z" />
     </g>
 
-    <!-- Curved Smile Underline Below "Lingua" -->
-    <path d="M 35 124 C 85 142, 175 142, 235 128" stroke="#FFCE3B" stroke-width="7.5" stroke-linecap="round" fill="none" />
+    <!-- Curved Smile Underline in Orange #FF7547 -->
+    <path d="M 35 124 C 85 142, 175 142, 235 128" stroke="#FF7547" stroke-width="7.5" stroke-linecap="round" fill="none" />
 
     <!-- ================= "KIDS" BADGE ================= -->
     <g transform="translate(350, 95)">
-      <!-- Yellow Sparkle Rays Around Badge -->
-      <path d="M -18 30 L -8 20" stroke="#FFD13B" stroke-width="4.5" stroke-linecap="round" />
-      <path d="M -18 48 L -8 40" stroke="#FFD13B" stroke-width="4.5" stroke-linecap="round" />
-      <path d="M 172 20 L 182 30" stroke="#FFD13B" stroke-width="4.5" stroke-linecap="round" />
-      <path d="M 172 40 L 182 48" stroke="#FFD13B" stroke-width="4.5" stroke-linecap="round" />
+      <!-- Orange Sparkle Rays Around Badge -->
+      <path d="M -18 30 L -8 20" stroke="#FF7547" stroke-width="4.5" stroke-linecap="round" />
+      <path d="M -18 48 L -8 40" stroke="#FF7547" stroke-width="4.5" stroke-linecap="round" />
+      <path d="M 172 20 L 182 30" stroke="#FF7547" stroke-width="4.5" stroke-linecap="round" />
+      <path d="M 172 40 L 182 48" stroke="#FF7547" stroke-width="4.5" stroke-linecap="round" />
 
-      <!-- Soft Pastel Pill Badge Background #FFF3C8 -->
-      <rect x="0" y="8" width="164" height="64" rx="32" fill="#FFF4D0" />
+      <!-- Soft Pastel Pill Badge Background #FDEED9 -->
+      <rect x="0" y="8" width="164" height="64" rx="32" fill="#FDEED9" />
 
-      <!-- "K" in Purple #7961D1 -->
-      <g fill="#7961D1">
+      <!-- "K" in Dark Navy #222033 -->
+      <g fill="#222033">
         <path d="M 19 22 C 24 22, 28 26, 28 31 L 28 60 C 28 65, 24 69, 19 69 C 14 69, 10 65, 10 60 L 10 31 C 10 26, 14 22, 19 22 Z" />
         <path d="M 27 46 L 44 26 C 47 23, 53 23, 56 27 C 59 31, 58 36, 54 40 L 39 52 L 56 68 C 60 72, 59 78, 54 81 C 51 83, 46 83, 42 79 L 26 59 Z" />
       </g>
 
-      <!-- "i" in Vivid Pink #F2527D -->
-      <g fill="#F2527D">
+      <!-- "i" in Orange #FF7547 -->
+      <g fill="#FF7547">
         <circle cx="70" cy="25" r="5.5" />
         <rect x="65" y="36" width="10" height="32" rx="5" />
       </g>
 
-      <!-- "d" in Coral Orange #FF7547 -->
-      <g fill="#FF7547">
+      <!-- "d" in Warm Yellow-Orange #FFAE42 -->
+      <g fill="#FFAE42">
         <path d="M 112 18 C 116 18, 120 22, 120 27 L 120 59 C 120 64, 116 68, 112 68 C 108 68, 105 65, 104 62 C 99 66, 92 68, 85 68 C 73 68, 64 58, 64 45 C 64 32, 74 22, 86 22 C 93 22, 99 25, 104 30 L 104 27 C 104 22, 107 18, 112 18 Z M 92 34 C 85 34, 80 40, 80 47 C 80 54, 85 58, 92 58 C 98 58, 104 53, 104 46 C 104 39, 98 34, 92 34 Z" />
       </g>
 
-      <!-- "s" in Golden Yellow #FFBA2A -->
-      <g fill="#FFBA2A">
+      <!-- "s" in Warm Yellow #FFC875 -->
+      <g fill="#FFC875">
         <path d="M 148 33 C 148 29, 144 26, 137 26 C 130 26, 126 29, 126 33 C 126 38, 131 40, 138 42 C 148 45, 154 50, 154 58 C 154 66, 146 72, 136 72 C 125 72, 118 66, 118 58 C 118 53, 122 50, 126 50 C 131 50, 134 53, 135 56 C 136 60, 140 62, 144 62 C 148 62, 151 59, 151 56 C 151 52, 146 50, 139 48 C 129 45, 123 40, 123 32 C 123 23, 131 18, 141 18 C 150 18, 157 23, 157 31 C 157 36, 153 39, 148 39 C 145 39, 142 37, 148 33 Z" />
       </g>
     </g>

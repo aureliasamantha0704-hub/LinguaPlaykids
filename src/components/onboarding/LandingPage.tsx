@@ -1,10 +1,10 @@
 import React from 'react';
-import { Play, Sparkles, Shield, Heart, Volume2, Globe, Star, Award, CheckCircle } from 'lucide-react';
+import { Play, Shield } from 'lucide-react';
 import { sound } from '../../utils/sound';
-
 import { ChildProfile } from '../../types';
 import { DEFAULT_PROFILE } from '../../utils/storage';
 import { MASCOTS } from '../../data/avatars';
+import { AppLogo } from '../common/AppLogo';
 
 interface LandingPageProps {
   profile?: ChildProfile;
@@ -23,24 +23,37 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   const currentMascot = profile ? (MASCOTS.find((m) => m.id === profile.avatar.mascotId) || MASCOTS[0]) : MASCOTS[0];
 
   return (
-    <div className="min-h-[calc(100vh-80px)] bg-gradient-to-b from-amber-50 via-sky-50 to-purple-50 py-8 px-4 sm:px-8 flex flex-col justify-between">
-      {/* Hero Section */}
-      <div className="max-w-5xl mx-auto text-center py-6 sm:py-12">
-        {/* Floating Mascot Badges & Logo */}
-        <div className="flex flex-col items-center justify-center mb-6">
-          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl overflow-hidden border-4 border-amber-300 shadow-2xl mb-4 transform hover:scale-105 transition-transform bg-gradient-to-tr from-amber-400 to-orange-500">
-            <img
-              src="/logo.jpg"
-              alt="LinguaPlay Kids Logo"
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-          <div className="inline-flex items-center gap-2 bg-amber-100 border-2 border-amber-300 px-4 py-2 rounded-full text-amber-900 text-xs sm:text-sm font-black shadow-sm animate-bounce">
-            <span>🦁 Leo & 🐼 Mianmian • Aligned with CEFR (Pre-A1 to B1) & YCT 1–4 Standards 🌟</span>
-          </div>
+    <div className="min-h-screen bg-gradient-to-b from-amber-50 via-sky-50 to-purple-50 flex flex-col justify-between">
+      {/* Top Navigation Bar: Direct Logo at Top-Left (No square background box) */}
+      <nav className="w-full px-4 sm:px-8 py-3.5 flex items-center justify-between border-b border-amber-200/60 bg-white/60 backdrop-blur-md">
+        {/* Top-Left: Direct Logo */}
+        <div className="cursor-pointer">
+          <AppLogo size="md" />
         </div>
 
+        {/* Top-Right: Clean Parent/Teacher Access (No redundant logos) */}
+        <div>
+          <button
+            onClick={() => {
+              sound.playClick();
+              onOpenParentGate();
+            }}
+            className="px-3.5 py-1.5 sm:px-4 sm:py-2 bg-white/90 hover:bg-white text-purple-700 font-extrabold text-xs sm:text-sm rounded-2xl shadow-xs border-2 border-purple-200 hover:border-purple-300 cursor-pointer active:scale-95 transition-all flex items-center gap-1.5"
+          >
+            <Shield className="w-4 h-4 text-purple-600" />
+            <span>Parents & Teachers</span>
+          </button>
+        </div>
+      </nav>
+
+      {/* Main Hero Section */}
+      <main className="max-w-5xl mx-auto text-center py-6 sm:py-12 px-4 sm:px-8 flex-1 flex flex-col justify-center">
+        {/* Standard Alignment Badge */}
+        <div className="inline-flex items-center gap-2 bg-amber-100 border-2 border-amber-300 px-4 py-1.5 rounded-full text-amber-900 text-xs sm:text-sm font-black shadow-xs mb-6 mx-auto animate-bounce">
+          <span>✨ Aligned with CEFR (Pre-A1 to B1) & YCT 1–4 Standards</span>
+        </div>
+
+        {/* Big Bold Headline */}
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-gray-900 tracking-tight leading-tight mb-4">
           Learn Languages By{' '}
           <span className="bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 bg-clip-text text-transparent">
@@ -122,7 +135,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             className="w-full sm:w-auto px-6 py-4 bg-white hover:bg-gray-50 text-purple-700 font-black text-base rounded-3xl shadow-md border-3 border-purple-300 cursor-pointer active:scale-95 transition-all flex items-center justify-center gap-2"
           >
             <Shield className="w-5 h-5 text-purple-600" />
-            <span>Parent & Teacher Access</span>
+            <span>Parent Dashboard</span>
           </button>
         </div>
 
@@ -152,10 +165,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({
             <p className="text-xs text-gray-500 font-medium">Math gate, speech speed & progress tracking</p>
           </div>
         </div>
-      </div>
+      </main>
 
       {/* Footer */}
-      <footer className="max-w-5xl mx-auto w-full border-t border-amber-200 pt-4 text-center text-xs text-gray-500 font-medium">
+      <footer className="max-w-5xl mx-auto w-full border-t border-amber-200/80 py-4 text-center text-xs text-gray-500 font-medium px-4">
         <p>LinguaPlay Kids — Fun English & Mandarin Chinese Web Learning Game</p>
       </footer>
     </div>
