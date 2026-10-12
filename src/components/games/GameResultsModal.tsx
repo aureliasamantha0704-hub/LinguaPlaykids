@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { Star, Award, Coins, ArrowRight, RotateCcw, Sparkles } from 'lucide-react';
 import { VocabularyItem } from '../../types';
+import { loadChildProfile } from '../../utils/storage';
+import { getStandardBadgeInfo } from '../../data/levels';
 import { sound } from '../../utils/sound';
 
 interface GameResultsModalProps {
@@ -38,6 +40,9 @@ export const GameResultsModal: React.FC<GameResultsModalProps> = ({
     }
   }, []);
 
+  const profile = loadChildProfile();
+  const standardBadge = getStandardBadgeInfo(profile.activeLanguage, profile.level);
+
   return (
     <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center p-4">
       <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border-4 border-amber-300 relative text-center animate-in zoom-in-90 duration-300">
@@ -46,8 +51,13 @@ export const GameResultsModal: React.FC<GameResultsModalProps> = ({
           🎉
         </div>
 
+        <div className="inline-flex items-center gap-1.5 bg-amber-100 border border-amber-300 px-3 py-1 rounded-full text-[10px] font-black text-amber-900 mb-2">
+          <span>{standardBadge.badgeEmoji}</span>
+          <span>Level {profile.level}: {standardBadge.standardCode}</span>
+        </div>
+
         <h2 className="text-3xl font-black text-gray-900 mb-1">Lesson Complete!</h2>
-        <p className="text-sm font-bold text-gray-500 mb-6">Great effort! You are getting smarter every day!</p>
+        <p className="text-xs font-bold text-gray-500 mb-5">Great effort! Progressing towards international milestones!</p>
 
         {/* Stars Banner */}
         <div className="flex items-center justify-center gap-2 mb-6">
