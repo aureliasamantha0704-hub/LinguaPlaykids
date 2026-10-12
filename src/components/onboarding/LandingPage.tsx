@@ -5,7 +5,6 @@ import { sound } from '../../utils/sound';
 import { ChildProfile } from '../../types';
 import { DEFAULT_PROFILE } from '../../utils/storage';
 import { MASCOTS } from '../../data/avatars';
-import { BrandLogo } from '../common/BrandLogo';
 
 interface LandingPageProps {
   profile?: ChildProfile;
@@ -26,15 +25,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({
   return (
     <div className="min-h-[calc(100vh-80px)] bg-gradient-to-b from-amber-50 via-sky-50 to-purple-50 py-8 px-4 sm:px-8 flex flex-col justify-between">
       {/* Hero Section */}
-      <div className="max-w-5xl mx-auto text-center py-6 sm:py-10">
-        {/* Brand Official Logo Display */}
-        <div className="mb-6 flex justify-center">
-          <BrandLogo variant="full" height={80} className="hover:scale-105 transition-transform drop-shadow-md" />
-        </div>
-
-        {/* Floating Mascot Badges */}
-        <div className="inline-flex items-center gap-2 bg-amber-100 border-2 border-amber-300 px-4 py-2 rounded-full text-amber-900 text-xs sm:text-sm font-black shadow-sm mb-6 animate-bounce">
-          <span>🦁 Leo & 🐼 Mianmian • Aligned with CEFR (Pre-A1 to B1) & YCT 1–4 Standards 🌟</span>
+      <div className="max-w-5xl mx-auto text-center py-6 sm:py-12">
+        {/* Floating Mascot Badges & Logo */}
+        <div className="flex flex-col items-center justify-center mb-6">
+          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl overflow-hidden border-4 border-amber-300 shadow-2xl mb-4 transform hover:scale-105 transition-transform bg-gradient-to-tr from-amber-400 to-orange-500">
+            <img
+              src="/logo.jpg"
+              alt="LinguaPlay Kids Logo"
+              className="w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          <div className="inline-flex items-center gap-2 bg-amber-100 border-2 border-amber-300 px-4 py-2 rounded-full text-amber-900 text-xs sm:text-sm font-black shadow-sm animate-bounce">
+            <span>🦁 Leo & 🐼 Mianmian • Aligned with CEFR (Pre-A1 to B1) & YCT 1–4 Standards 🌟</span>
+          </div>
         </div>
 
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-gray-900 tracking-tight leading-tight mb-4">

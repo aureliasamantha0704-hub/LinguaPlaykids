@@ -4,7 +4,6 @@ import { ChildProfile, ActiveLanguage } from '../../types';
 import { sound } from '../../utils/sound';
 import { MASCOTS } from '../../data/avatars';
 import { getStandardBadgeInfo } from '../../data/levels';
-import { BrandLogo } from './BrandLogo';
 
 interface HeaderProps {
   profile: ChildProfile;
@@ -62,15 +61,25 @@ export const Header: React.FC<HeaderProps> = ({
               onGoHome();
             }}
             className="flex items-center gap-2 group text-left cursor-pointer transition-transform active:scale-95"
-            title="LinguaPlay Kids - Home"
           >
-            {/* Mascot Icon for very small screens */}
-            <div className="block sm:hidden">
-              <BrandLogo variant="icon" height={36} className="group-hover:rotate-6 transition-transform" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl overflow-hidden shadow-md group-hover:rotate-6 transition-transform border-2 border-amber-300 bg-gradient-to-tr from-amber-400 to-orange-500 shrink-0 flex items-center justify-center">
+              <img
+                src="/logo.jpg"
+                alt="LinguaPlay Logo"
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+                onError={(e) => {
+                  (e.target as HTMLElement).style.display = 'none';
+                }}
+              />
             </div>
-            {/* Full Wordmark Logo for standard screens */}
-            <div className="hidden sm:block">
-              <BrandLogo variant="full" height={44} className="group-hover:scale-102 transition-transform" />
+            <div className="hidden min-[400px]:block">
+              <h1 className="text-lg sm:text-2xl font-black bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 bg-clip-text text-transparent leading-tight">
+                LinguaPlay
+              </h1>
+              <p className="text-[9px] sm:text-[10px] font-extrabold text-amber-600 tracking-wider uppercase">
+                Kids Learning
+              </p>
             </div>
           </button>
         </div>
