@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ArrowRight, ArrowLeft, Check, Sparkles, User, Globe, Smile } from 'lucide-react';
 import { ChildProfile, Language } from '../../types';
 import { MASCOTS } from '../../data/avatars';
-import { BrandLogo } from '../common/BrandLogo';
+import { AppLogo } from '../common/AppLogo';
 import { sound } from '../../utils/sound';
 
 interface OnboardingFlowProps {
@@ -45,7 +45,7 @@ export const OnboardingFlow: React.FC<OnboardingFlowProps> = ({
       <div className="bg-white rounded-3xl p-6 sm:p-10 max-w-xl w-full shadow-2xl border-4 border-amber-300 relative text-center">
         {/* Brand Logo Header */}
         <div className="mb-4 flex justify-center">
-          <BrandLogo variant="full" height={52} />
+          <AppLogo size="md" />
         </div>
 
         {/* Top Back to Landing Button */}
